@@ -1,0 +1,25 @@
+#####################
+# IDE Project Files #
+#####################
+# JetBrains IDE
+.idea
+
+# VS Code
+.vscode
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+######################
+# OS Generated Files #
+######################
+.directory
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+##################
+# Custom Ignores #
+##################
