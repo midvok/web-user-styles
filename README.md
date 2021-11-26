@@ -4,6 +4,7 @@
 My custom web styles for the [Stylus](https://add0n.com/stylus.html) browser extension, which enables you to override the default appearance of web pages.
 
 * [DevDocs.io](devdocs)
+* [JavaTpoint.com](javatpoint)
 
 ## Installation
 First, you need to install the [Stylus](https://add0n.com/stylus.html) ([github](https://github.com/openstyles/stylus)) addon for your browser.

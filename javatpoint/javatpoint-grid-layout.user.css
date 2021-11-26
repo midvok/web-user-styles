@@ -1,0 +1,629 @@
+/* ==UserStyle==
+@name           [javatpoint.com] Grid Layout
+@namespace      github.com/midvok/web-user-styles
+@description    A mid-light theme with grid layout.
+@author         midvok
+@homepageURL    https://github.com/midvok/web-user-styles/tree/master/javatpoint
+@version        1.0.0
+@license        MIT
+==/UserStyle== */
+@-moz-document domain("javatpoint.com") {
+  :root {
+    /* === Font Styles === */
+    --header-font-family: 'Source Sans Pro', sans-serif;
+    --header-font-weight: 600;
+    --header-font-scale: 1.0;
+
+    --sidebar-font-family: 'PT Serif', sans-serif;
+    --sidebar-line-height: 1.5;
+    --sidebar-font-size: 14px;
+
+    --text-font-family: 'PT Serif', sans-serif;
+    --text-line-height: 1.5;
+    --text-size: 14px;
+
+    --hdr2-margin-bot: 12px;
+    --hdr3-margin-bot: 7px;
+    --hdr4-margin-bot: 7px;
+    --par-margin: 8px;
+    --list-margin: 4px;
+
+    --code-font-family: 'Courier Prime', monospace;
+    --code-font-family: 'Courier Prime Code', monospace;
+    --code-font-family: Consolas, 'SF Mono', monospace;
+    --code-line-height: 1.4;
+    --code-inline-size: 13px;
+    --code-size: 13px;
+
+    /* === Body/Page === */
+    --body-bg: hsl(204, 4%, 28%);
+    --content-bg: #E7E9EB;
+
+    /* === Text Colors === */
+    --text-color: #333;
+    --text-color-light: #222;
+    --text-color-lighter: #222;
+    --text-em-color: #558B2F;
+    --text-link-color: hsl(120, 100%, 30%);
+
+    /* === Header Colors === */
+    --header-color: #333;
+    --header-border: hsl(120, 4%, 68%);
+
+    /* === Code === */
+    --code-color: #000;
+    --code-border-strip: hsl(140, 35%, 45%);
+    --code-border: hsl(120, 8%, 65%);
+    --code-radius: 4px;
+    --code-bg: hsla(0, 23%, 79%, .35);
+    --code-bg: hsl(350, 12%, 87%);
+
+    /* === Tables === */
+    --table-hdr-color: #363636;
+    --table-bg: #fff;
+    --table-bg-alt: hsl(120, 10%, 96%);
+    --table-hdr-bg: hsl(120, 32%, 70%);
+    --table-radius: 4px;
+    --table-border: hsl(120, 8%, 58%);
+    --table-border-inner: hsla(0, 0%, 0%, 0.2);
+
+    /* === Sidebar === */
+    --sidebar-bg: #B0BEC5;
+    --sidebar-bg: hsl(210, 16%, 73%);
+    --sidebar-active-bg: hsl(202, 10%, 63%);
+    --sidebar-hover-bg: hsla(0, 0%, 0%, 0.08);
+    --sidebar-text: #222;
+    --sidebar-text-light: #93a1a1;
+
+    /* === Boxes === */
+    --box-radius: 4px;
+
+    /* Yellow */
+    --noteBackground: hsl(55, 65%, 83%);
+    --noteBorder: hsl(55, 60%, 50%);
+    /* Red */
+    --noteRedBackground: hsl(8, 60%, 82%);
+    --noteRedBorder: hsl(5, 60%, 70%);
+    /* Orange */
+    --noteOrangeBackground: hsl(30, 55%, 83%);
+    --noteOrangeBorder: hsl(30, 70%, 65%);
+    /* Green */
+    --noteGreenBackground: hsl(110, 37%, 82%);
+    --noteGreenBorder: hsl(110, 40%, 65%);
+    /* Blue */
+    --noteBlueBackground: hsl(200, 35%, 82%);
+    --noteBlueBorder: hsl(200, 40%, 60%);
+    /* Teal */
+    --noteTealBackground: hsl(175, 40%, 78%);
+    --noteTealBorder: hsl(175, 45%, 55%);
+  }
+
+  /*******************************************************************************
+  * Page Layout - Use Grid!
+  *******************************************************************************/
+  :root {
+    --header-height: 66px;
+    --topbar-height: 40px;
+    --sidebar-width: 320px;
+    --page-gap: 20px;
+    --page-radius: 0px;
+    --page-shadow: 0 2px 7px 1px hsla(0, 0%, 0%, 0.8);
+  }
+
+  #container {
+    display: grid;
+    grid-template-areas: "header header header header" "topbar topbar topbar topbar" "leftgap sidebar content rightgap" "footer footer footer footer";
+    grid-template-columns: 1fr min-content minmax(400px, 1060px) 1fr;
+  }
+
+  /* === Header === */
+  #container > .header {
+    grid-area: header;
+    box-sizing: border-box;
+
+    height: var(--header-height);
+    display: flex;
+    z-index: 900;
+  }
+
+  #container > .headermobile {
+    grid-area: header;
+    box-sizing: border-box;
+    display: none;
+  }
+
+  /* === Topbar === */
+  #container > #link {
+    grid-area: topbar;
+    box-sizing: border-box;
+    height: var(--topbar-height);
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 7px 1px hsla(0, 0%, 0%, 0.7);
+  }
+
+  /* === Sidebar === */
+  #container > #menu, #righthome {
+    grid-area: sidebar;
+    box-sizing: border-box;
+
+    position: sticky;
+    top: calc(var(--topbar-height) + var(--page-gap));
+    max-height: calc(100vh - var(--topbar-height) - var(--header-height) - 2*var(--page-gap));
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    width: var(--sidebar-width);
+    margin: var(--page-gap);
+    margin-right: 5px;
+    border-radius: var(--page-radius);
+    box-shadow: var(--page-shadow);
+  }
+
+  /* === Page Content === */
+  #container > div.onlycontent {
+    grid-area: content;
+    box-sizing: border-box;
+
+    width: auto;
+    margin: 20px 20px 20px;
+    border-radius: var(--page-radius);
+    box-shadow: var(--page-shadow);
+  }
+
+  /* === Footer === */
+  #container > #footer {
+    grid-area: footer;
+    box-sizing: border-box;
+  }
+
+  /*******************************************************************************
+  * Page Layout for Run Code
+  *******************************************************************************/
+  div.trytopnav + #container {
+    display: block;
+  }
+  #iframewrapper body {
+    background: white;
+  }
+
+  /*******************************************************************************
+  * Body/Page
+  *******************************************************************************/
+  :root {
+    font-size: 14px;
+  }
+  body {
+    margin: 0px;
+    background-color: var(--body-bg) !important;
+    font-family: var(--text-font-family);
+    font-size: var(--text-size);
+  }
+  #page {
+    margin: 0 !important;
+    background-color: var(--body-bg) !important;
+  }
+  #container {
+    background: var(--body-bg);
+  }
+
+  /*******************************************************************************
+  * Page Content
+  *******************************************************************************/
+  div.onlycontent {
+    background-color: var(--content-bg);
+    padding: 10px 30px;
+  }
+  p {
+    padding: 0;
+    margin: var(--par-margin) 0;
+  }
+  hr {
+    background-color: #d4d4d4;
+    color: #d4d4d4;
+    height: 1px;
+    border: 0;
+    clear: both;
+    display: none;
+  }
+
+  /* === Text Fonts === */
+  div#city, #city td, #city ul {
+    font-family: var(--text-font-family);
+    line-height: var(--text-line-height);
+    font-size: var(--text-size);
+    color: var(--text-color);
+  }
+  a {
+    color: var(--text-link-color);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--text-link-color);
+    text-decoration: underline;
+  }
+  #city strong, #city b {
+    font-family: var(--text-font-family);
+    font-weight: bold;
+    font-style: italic;
+  }
+  em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--text-em-color);
+    margin-right: 4px;
+  }
+
+  /* === Headers === */
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--header-font-family) !important;
+    font-weight: var(--header-font-weight) !important;
+    clear: both;
+    color: var(--header-color);
+    line-height: 1.3em !important;
+  }
+  #city h1, .h1 {
+    font-size: calc(2.2em * var(--header-font-scale));
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  #city h2, #city .h2 {
+    font-size: calc(1.8em * var(--header-font-scale));
+    border-bottom: 1px solid var(--header-border);
+    padding-bottom: 2px;
+    margin-top: 2.5rem;
+    margin-bottom: var(--hdr2-margin-bot);
+  }
+  h3, .h3 {
+    font-size: calc(1.3em * var(--header-font-scale)) !important;
+    margin-top: 2rem;
+    margin-bottom: var(--hdr3-margin-bot);
+  }
+  h4, .h4 {
+    font-size: calc(1.2em * var(--header-font-scale)) !important;
+    margin-bottom: var(--hdr4-margin-bot);
+  }
+
+  /* === Fieldset === */
+  fieldset {
+    border: 1px solid var(--header-border);
+    border-radius: var(--box-radius);
+  }
+  #legendfont, .legendfont {
+    color: var(--header-color);
+    font-family: var(--text-font-family);
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  /*******************************************************************************
+  * Lists
+  *******************************************************************************/
+  ul, ol {
+    margin-top: var(--par-margin);
+    margin-bottom: var(--par-margin);
+  }
+  #city li {
+    color: var(--text-color);
+    line-height: var(--text-line-height);
+    margin-top: 0px;
+  }
+  ol.points li, ul.points li {
+    padding: 0em;
+    margin: 0px 0 var(--list-margin);
+  }
+  ul.points {
+    list-style: initial;
+  }
+
+  /* Index list */
+  #city .col-3 li {
+    margin: 0 0 2px;
+  }
+
+  /*******************************************************************************
+  * Tables
+  *******************************************************************************/
+  table.alt {
+    border: 1px solid var(--table-border);
+    margin: 1rem 0 1.5rem;
+  }
+  /* === Table header === */
+  table.alt th {
+    font-family: inherit;
+    font-size: inherit;
+    vertical-align: top;
+    text-align: left;
+    color: var(--table-hdr-color);
+    background-color: var(--table-hdr-bg);
+    border: 0;
+    border-bottom: 1px solid var(--table-border);
+    padding: 6px 8px;
+  }
+  table.alt th + th, table.alt th + td {
+    border-left: 1px solid var(--table-border);
+  }
+  /* === Table cells === */
+  table.alt td {
+    text-align: left;
+    vertical-align: top;
+    border: none;
+    border: 0;
+    border-bottom: 1px solid var(--table-border-inner);
+    padding: 4px 8px;
+  }
+  table.alt td + td {
+    border-left: 1px solid var(--table-border-inner);
+  }
+  table.alt tr:last-child > td {
+    border-bottom: 0;
+  }
+  table.alt tr:nth-child(2n+1) {
+    background-color: var(--table-bg-alt);
+  }
+
+  /*******************************************************************************
+  * Prev, next buttons
+  *******************************************************************************/
+  .nexttopicdiv {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 3rem;
+    clear: both;
+  }
+  .nexttopicdiv ~ br {
+    display: none;
+  }
+  #bottomnext {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  #bottomnext a, #bottomnextup a {
+    background: #66BB6A;
+  }
+
+  /* === Test it Now === */
+  span.testit {
+    margin: -4px 0 0px;
+    display: inline-block;
+  }
+  .testit a, .testit a:hover {
+    font: 15px var(--header-font-family);
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 8px 35px;
+    display: inline-block;
+  }
+
+  /*******************************************************************************
+  * Code Blocks
+  *******************************************************************************/
+  .codeblock, .codeblock3 {
+    font-family: var(--code-font-family);
+    line-height: var(--code-line-height);
+    font-size: var(--code-size) !important;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.7rem 0 1.5rem;
+    padding: 8px 12px;
+
+    border: 1px solid var(--code-border);
+  }
+  .codeblock {
+    color: var(--code-text);
+
+    background: var(--code-bg);
+    border-left: 4px solid #04AA6D;
+    border-left: 4px solid var(--code-border-strip);
+    border-radius: var(--code-radius);
+  }
+  .dp-highlighter {
+    width: initial;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0 !important;
+  }
+  .dp-highlighter, .dp-highlighter ol li {
+    margin: 0 !important;
+    line-height: inherit !important;
+    padding: 0 !important;
+  }
+  .dp-highlighter ol li span {
+    color: var(--code-color);
+  }
+
+  /* === Code Output Block === */
+  .codeblock3 {
+    background: #34302F;
+    color: #e0e0e0;
+    overflow-x: auto;
+    overflow-y: auto;
+
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+  }
+  .codeblock3 > pre {
+    margin: 0;
+    padding: 0;
+  }
+
+  /*******************************************************************************
+  * Boxes
+  *******************************************************************************/
+  .n {
+    margin: 1.5rem 0;
+    padding: 14px 14px;
+    background: url(images/note.png) 8px 18px no-repeat;
+    background: var(--noteBackground);
+    border-radius: var(--box-radius);
+    border: 1px solid var(--noteBorder);
+    border-left: 4px solid var(--noteBorder);
+
+    color: #333 !important;
+    font-family: var(--text-font-family) !important;
+    line-height: var(--text-line-height) !important;
+    font-size: var(--text-size) !important;
+    font-style: italic;
+  }
+
+  /*******************************************************************************
+  * Header
+  *******************************************************************************/
+  #container > .header {
+    background: #66BB6A;
+  }
+  #container > .header > table {
+    margin-bottom: 0 !important;
+  }
+  .gsc-control-cse,
+  .gsc-control-cse-en {
+    background: none;
+    border: none;
+  }
+  /* Search box */
+  input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
+    border-color: hsla(0, 0%, 0%, 0.4);
+  }
+
+  /*******************************************************************************
+  * Topbar
+  *******************************************************************************/
+  .ddsmoothmenu {
+    background: #388E3C;
+    width: 100%;
+    height: 100%;
+  }
+  .ddsmoothmenu ul {
+    display: block;
+    line-height: var(--topbar-height);
+  }
+  .ddsmoothmenu ul li {
+    display: block;
+  }
+  .ddsmoothmenu ul li a {
+    background: inherit;
+    transition: none;
+
+    color: #fff!important;
+    font-weight: 400;
+    font-size: 14px;
+
+    margin: 0;
+    padding: 0 10px;
+    height: 40px;
+  }
+  .ddsmoothmenu ul li a:hover {
+    background-color: hsla(0, 0%, 0%, 0.15) !important;
+  }
+  .ddsmoothmenu ul li a.selected {
+    background-color: hsla(0, 0%, 0%, 0.3) !important;
+  }
+  .ddsmoothmenu ul li a img {
+    position: relative;
+    top: 2px;
+  }
+
+  /*******************************************************************************
+  * Sidebar Menu
+  *******************************************************************************/
+  #menu, #righthome {
+    background: var(--sidebar-bg);
+    scrollbar-color: hsla(0, 0%, 0%, 0.2) var(--sidebar-bg);
+    padding: 4px 0 1rem;
+  }
+  #menu > img {
+    display: none;
+    padding: 5px;
+  }
+  #menu * {
+    font-family: var(--sidebar-font-family);
+    line-height: var(--sidebar-line-height);
+    font-size: var(--sidebar-font-size);
+    color: var(--sidebar-text);
+  }
+
+  /* === Menu header === */
+  .leftmenu2 span {
+    background: none;
+    width: auto;
+  }
+  #menu span.spanh2 {
+    font-family: var(--header-font-family) !important;
+    font-weight: var(--header-font-weight) !important;
+    line-height: 1.5;
+    font-size: 16px;
+    display: block;
+    color: #37474F;
+    color: #222;
+
+    margin: 0px 8px 7px;
+    padding: 14px 7px 0;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.3);
+    border-bottom: 1px solid #78909C;
+  }
+  .leftmenu2 span:before {
+    content: '📁';
+    display: inline-block;
+    width: 27px;
+    margin-right: 0px;
+  }
+
+  /* === Menu items === */
+  .leftmenu a:active, .leftmenu a:hover, .leftmenu a:link, .leftmenu a:visited {
+    display: block;
+    overflow-x: clip;
+    float: none;
+    width: auto;
+    margin: 0 8px 0;
+    padding: 0px 0;
+    padding-left: 40px;
+    border-radius: 4px;
+    background: none;
+    text-decoration: none;
+  }
+  .leftmenu > a:before {
+    content: '📄';
+    display: inline-block;
+    font-size: 13px;
+    width: 20px;
+    margin-left: -20px;
+  }
+  #menu a:hover {
+    text-decoration: underline;
+  }
+  #menu a[style="color: black;"] {
+    background: var(--sidebar-active-bg);
+    font-weight: bold;
+  }
+
+  /*******************************************************************************
+  * Disable irrelevant/spam elements
+  *******************************************************************************/
+  /* Ads bar */
+  ._adr_abp_container {
+    display: none !important;
+  }
+
+  #city ~ * {
+    display: none;
+  }
+
+  #myBtn {
+    display: none !important;
+  }
+
+  /* Training sidebar link */
+  a.training {
+    display: none !important;
+  }
+  #footer > * {
+    display: none !important;
+  }
+}
