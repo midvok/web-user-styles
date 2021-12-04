@@ -5,6 +5,7 @@ My custom web styles for the [Stylus](https://add0n.com/stylus.html) browser ext
 
 * [DevDocs.io](devdocs)
 * [JavaTpoint.com](javatpoint)
+* [Odysee.com](odysee)
 
 ## Installation
 First, you need to install the [Stylus](https://add0n.com/stylus.html) ([github](https://github.com/openstyles/stylus)) addon for your browser.
@@ -17,4 +18,4 @@ Then, you can either search for an existing style for certain web site or create
 
 ## Additional User Styles
 
-* [UserStyles.world](https://userstyles.world/)
+* [UserStyles.world](https://userstyles.world/) (my profile [@midvok](https://userstyles.world/user/midvok))
